@@ -10,7 +10,6 @@ class CardGame:
     def __init__(self):
         self.board = ["▓" for _ in range(16)]
         self.pairedList = self.getPairedList()
-        print(self.pairedList)
         self.play()
 
     def play(self):
@@ -38,7 +37,6 @@ class CardGame:
                     print("Congratulations! You found a match.")
                     self.pairedList[cardIndex1] = None
                     self.pairedList[cardIndex2] = None
-                    print(self.pairedList)
 
                 else:
                     print(
