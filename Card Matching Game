@@ -1,0 +1,82 @@
+import random
+
+
+# Create board
+board = ["▓", "▓" ,"▓", "▓", "▓",
+         "▓", "▓" ,"▓", "▓", "▓",
+         "▓", "▓" ,"▓", "▓", "▓",
+         "▓", "▓" ,"▓", "▓", "▓"]
+
+cardsLeft = 20
+def printBoard(board):
+    board = [str(b) if type(b) != int else "▓" for b in board]
+    print(("1" + "  " + "2" + "  " + "3" + "  " + "4" + "  " + "5"))
+    print(board[0] + "  " + board[1] + "  " + board[2] + "  " + board[3] + "  " + board[4])
+    print(("6" + "  " + "7" + "  " + "8" + "  " + "9" + "  " + "10"))
+    print(board[5] + "  " + board[6] + "  " + board[7] + "  " + board[8] + "  " + board[9])
+    print(("11" + " " + "12" + " " + "13" + " " + "14" + " " + "15"))
+    print(board[10] + "  " + board[11] + "  " + board[12] + "  " + board[13] + "  " + board[14])
+    print(("16" + " " + "17" + " " + "18" + " " + "19" + " " + "20"))
+    print(board[15] + "  " + board[16] + "  " + board[17] + "  " + board[18] + "  " + board[19])
+
+    # outer loop: print line of tableau
+    for outerIndex in [0,5,10,15]:
+
+        # inner loop: print 5 card numbers of row of tableau
+        for index in range(outerIndex + 1,outerIndex + 6):
+            print(index, end="  ")
+        print()
+
+        # inner loop: print 5 cards of row of tableau
+        for index in range(outerIndex,outerIndex + 5):
+            print(board[index], end="  ")
+        print()
+
+
+printBoard(board)
+# create paired list of numbers and randomize
+pairedList = []
+for i in range(1,11):
+    pairedList.append(i)
+    pairedList.append(i)
+random.shuffle(pairedList)
+
+# assign number to card
+board = pairedList
+print(board)
+
+# main loop
+while cardsLeft > 0:
+    # user input
+    userInput1 = int(input(f"Please choose a number: "))
+    userInput01 = userInput1 - 1
+    print("You flipped over card #", userInput1, "and it revealed the number", str(pairedList[userInput01]))
+    board[userInput01] = str(pairedList[userInput01])
+    print(board)
+
+    userInput2 = int(input(f"Please choose another number: "))
+    userInput02 = userInput2 - 1
+    if userInput2 != userInput1:
+        print("You flipped over card #", userInput2, "and it revealed the number", str(pairedList[userInput02]))
+        board[userInput02] = str(pairedList[userInput02])
+        printBoard(board)
+        if str(pairedList[userInput1 - 1]) == str(pairedList[userInput02]):
+            board[userInput01] = " "
+            board[userInput02] = " "
+            cardsLeft = cardsLeft - 2
+            printBoard(board)
+            print("You found a match!", cardsLeft)
+        else:
+            print("No match try again!")
+    else:
+        print("You cannot pick the same card twice!")
+print("You win!")
+# prevent choosing same card
+
+# matched cards stay turned
+
+# prevent choosing already matched cards
+
+# unequal cards turn back over
+
+# end game if all cards are turned over
