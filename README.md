@@ -1,7 +1,7 @@
 # card-matching-game
 
 
-##snipit of card_matching_game_with_class_2.1.py
+## snipit of card_matching_game_with_class_2.1.py
 ```
 ['3', '5', '7', '1', '1', '2', '7', '8', '4', '2', '3', '8', '6', '5', '6', '4']
 ▓ ▓ ▓ ▓
