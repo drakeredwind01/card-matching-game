@@ -27,7 +27,7 @@ Congratulations! You found a match.
 ```
 
 
-```
+Initial thoughts:
 # Create card shape
 # Order cards (5 x 4)
 # Number each card
@@ -45,4 +45,3 @@ Congratulations! You found a match.
 
 # Prevent user from picking same number twice
 # Prevent user from picking already matched cards
-```
