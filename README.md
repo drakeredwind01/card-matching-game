@@ -27,3 +27,22 @@ Congratulations! You found a match.
 ```
 
 
+```
+# Create card shape
+# Order cards (5 x 4)
+# Number each card
+# Create a list of paired numbers
+# Randomize numbers
+# Assign randomized numbers to cards in game
+# Create two inputs for user to pick two numbers
+# Show what number is behind the card
+# Say if the cards match
+# If cards match, remove matched cards from game
+# If no match, don’t update board
+# Flip cards back over
+# Loop until all cards are matched
+# Print “You win!” when game ends
+
+# Prevent user from picking same number twice
+# Prevent user from picking already matched cards
+```
