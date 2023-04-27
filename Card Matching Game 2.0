@@ -1,0 +1,83 @@
+import random
+
+# Create board
+board = ["▓", "▓" ,"▓", "▓", "▓",
+         "▓", "▓" ,"▓", "▓", "▓",
+         "▓", "▓" ,"▓", "▓", "▓",
+         "▓", "▓" ,"▓", "▓", "▓"]
+cardsLeft = 20
+
+def print_tableau(board):
+    board = [str(x) if not isinstance(x, int) else "▓" for x in board]
+    # outer loop: print line of tableau
+    for outerIndex in [0, 5, 10, 15]:
+        # inner loop: print 5 card numbers of row of tableau
+        for index in range(outerIndex, outerIndex + 5):
+            print('{:2d}'.format(index + 1), end="  ")
+        print()
+
+        # inner loop: print 5 cards of row of tableau
+        for index in range(outerIndex, outerIndex + 5):
+            print('{:>2s}'.format(board[index]), end="  ")
+        print()
+
+print_tableau(board)
+
+# create paired list of numbers and randomize
+pairedList = []
+for i in range(1,11):
+    pairedList.append(i)
+    pairedList.append(i)
+random.shuffle(pairedList)
+board = pairedList
+
+while cardsLeft > 0:
+    firstCard = 0
+    secondCard = 0
+    try:
+        firstCard = int(input(f"Pick a first card: "))
+        while firstCard == 0 or (firstCard < 1 or firstCard > 20):
+            print("\U0001F614", "Sorry. Please enter a whole number between 1 and 20.")
+            raise ValueError
+        if pairedList[firstCard - 1] == " ":
+            print("\U0001F614", "Sorry. That card already has a match!")
+            raise ValueError
+        else:
+            board[firstCard -1] = str(pairedList[firstCard -1])
+            print_tableau(board)
+    except ValueError:
+        continue
+
+    try:
+        secondCard = int(input(f"Pick a second card: "))
+        while secondCard == 0 or (secondCard < 1 or secondCard > 20):
+            print("\U0001F614", "Sorry. Please enter a whole number between 1 and 20.")
+            raise ValueError
+        if pairedList[secondCard - 1] != " " and secondCard != firstCard:
+            board[secondCard - 1] = str(pairedList[secondCard - 1])
+            print_tableau(board)
+        if pairedList[secondCard - 1] == " ":
+            print("\U0001F614", "Sorry. That card already has a match!")
+            raise ValueError
+        if firstCard == secondCard:
+            print("\U0001F614","Sorry. You cannot pick the same card twice.")
+            raise ValueError
+    except ValueError:
+        continue
+
+    if str(pairedList[firstCard - 1]) == str(pairedList[secondCard - 1]):
+        board[firstCard - 1] = ' '
+        board[secondCard - 1] = ' '
+        pairedList[firstCard - 1] = " "
+        pairedList[secondCard - 1] = " "
+        print_tableau(board)
+        print("You found a match!")
+        cardsLeft -= 2
+    else:
+        print("No match try again!")
+        board = ["▓", "▓", "▓", "▓", "▓",
+                 "▓", "▓", "▓", "▓", "▓",
+                 "▓", "▓", "▓", "▓", "▓",
+                  "▓", "▓", "▓", "▓", "▓"]
+
+print("You win!")
